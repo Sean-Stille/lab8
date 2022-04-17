@@ -5,7 +5,7 @@ public class HashMapPlayground {
     void printExperimentalResultsTable(){
         final int N = 8192;
         final int SEED = 42;
-
+        final double[] theory = {1.117, 1.282, 1.520, 1.885, 2.502, 3.590, 5.953, 13.137, 49.038};
         int currentSize;
         double i;
         int j;
@@ -16,7 +16,7 @@ public class HashMapPlayground {
         TitanProbeHashMap<Integer, String> map = new TitanProbeHashMap<Integer, String>(N);
         
         try{
-        
+        System.out.printf("L    Empirical ASMC    Theoretical ASMC\n");
         for ( i = 0.1; i < 0.5; i += 0.1){
                 currentSize = (int)(i*N);
                 for ( k = 0; k < 1000; k++ ){
@@ -29,9 +29,7 @@ public class HashMapPlayground {
                 }
                 average /=1000;
             
-                
-            System.out.printf("For %f, average = %f\n", i, average);
-             
+            System.out.printf("%.1f  %5.3f             %5.3f\n", i, average, theory[(int)(i*10)] );
         }
         
             
